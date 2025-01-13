@@ -18,7 +18,6 @@ const model = {
         }
         this.notes.unshift(newNote)
         view.renderNotes(this.notes)
-        //console.log(this.notes);
     },
     deleteNote(noteId) {
         this.notes = this.notes.filter(note => noteId !== note.id)
@@ -41,7 +40,6 @@ const model = {
         } else {
             view.renderNotes(this.notes)
         }
-
     }
 }
 
@@ -70,20 +68,19 @@ const view = {
                     form.textDescription.value = ''
                     //Логика для всплывающего окна “Заметка добавлена”. Сообщение скрывается через 3 секунды
                     const messageAddNote = document.querySelector('.message-add-note')
-                    // messageAddNote.style = 'display: flex' - можно так
                     messageAddNote.classList.add('show')
                     setTimeout(() => messageAddNote.classList.remove('show'), 3000)
                 } else {
                     //Логика для всплывающего окна “Максимум 50 символов”. Сообщение скрывается через 3 секунды
                     const messageWarning = document.querySelector('.message-warning')
-                    messageWarning.style = 'display: flex'
-                    setTimeout(() => messageWarning.style = '', 3000)
+                    messageWarning.classList.add('show')
+                    setTimeout(() => messageWarning.classList.remove('show'), 3000)
                 }
             } else {
                 //Логика для всплывающего окна “Заполните все поля”. Сообщение скрывается через 3 секунды
                 const messageEmptyInput = document.querySelector('.message-empty-input')
-                messageEmptyInput.style = 'display: flex'
-                setTimeout(() => messageEmptyInput.style = '', 3000)
+                messageEmptyInput.classList.add('show')
+                setTimeout(() => messageEmptyInput.classList.remove('show'), 3000)
             }
         })
         //событие для удаления заметки
@@ -115,7 +112,6 @@ const view = {
             }
         })
     },
-
 
     renderNotes(notes) {
         const notesContainer = document.querySelector('.notes-container')
@@ -152,11 +148,8 @@ const view = {
         }
         // счетчик заметок
         const counter = document.querySelector('.counter-number')
-        counter.textContent = notes.length
-
+        counter.textContent = model.notes.length
     },
-
-
 }
 
 // обработка действий пользователя, обновление модели

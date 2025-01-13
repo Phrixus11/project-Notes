@@ -7,7 +7,7 @@
 
 
 body {
-    min-width: 410px;
+    min-width: 430px;
 }
 
 header {
@@ -244,7 +244,7 @@ h3 {
     line-height: 1.5;
     color: #292515;
     flex-grow: 1;
-
+    word-break: break-word;
 }
 
 p {
@@ -284,11 +284,17 @@ p {
     bottom: 72px;
     display: flex;
     gap: 10px;
-    display: none;
-    /* opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    transition: 0.3s; */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    
 }
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
 .message-add-note {
     width: 230px;
@@ -308,11 +314,6 @@ p {
     background: #f23d5b
 }
 
-.show {
-    display: flex;
-}
-
-
 @media (max-width: 780px) {
     .submit-container {
         flex-wrap: wrap;
@@ -321,28 +322,35 @@ p {
 
     header,
     .main-section {
-        padding: 20px;
+        padding: 30px;
         transition: 0.1s;
     }
 
     .message {
         margin-top: 0px;
     }
-
-    /* input[type="text"] {
-        min-width: 97%;
-    } */
 }
 
 @media (max-width: 520px) {
 
     header,
     .main-section {
-        padding: 10px;
+        padding: 20px;
         transition: 0.1s;
     }
 
     input[type="text"] {
-        margin-bottom: 0px;
+        width: 310px;
+    }
+
+    .message-warning {
+        width: 314px;
+        height: 76px;
+        text-align: center;
+    }
+
+    .message-add-note,
+    .message-empty-input {
+        width: 250px;
     }
 }
