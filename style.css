@@ -253,6 +253,7 @@ p {
     font-size: 14px;
     line-height: 1.71429;
     color: #000;
+    word-break: break-word;
 }
 
 .img-favorite,
