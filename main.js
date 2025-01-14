@@ -7,6 +7,15 @@ const MOCK_NOTES = [
 // хранение данных, бизнес-логика
 const model = {
     notes: [],
+    statusIsFavorite: false,
+    // статус флажка isFavorite
+    getStatusIsFavorite(isFavorite) {
+        this.statusIsFavorite = isFavorite
+    },
+    // создание массива избранных 
+    arrNotesForFavorite() {
+        return this.notes.filter(note => note.isFavorite === true)
+    },
 
     addNote(textTitle, textDescription, color) {
         let newNote = {
@@ -17,30 +26,39 @@ const model = {
             isFavorite: false
         }
         this.notes.unshift(newNote)
-        view.renderNotes(this.notes)
+        if (this.statusIsFavorite) {
+            view.renderNotes(this.arrNotesForFavorite())
+        } else {
+            view.renderNotes(this.notes)
+        }
     },
     deleteNote(noteId) {
         this.notes = this.notes.filter(note => noteId !== note.id)
-        view.renderNotes(this.notes)
+        if (this.statusIsFavorite) {
+            view.renderNotes(this.arrNotesForFavorite())
+        } else {
+            view.renderNotes(this.notes)
+        }
     },
     addFavotire(noteId) {
         this.notes.forEach(note => {
             if (noteId === note.id) {
                 note.isFavorite = !note.isFavorite
             }
-            view.renderNotes(this.notes)
+            if (this.statusIsFavorite) {
+                view.renderNotes(this.arrNotesForFavorite())
+            } else {
+                view.renderNotes(this.notes)
+            }
         })
     },
     viewOnlyFavorites(isFavorite) {
         if (isFavorite) {
-            let arrForFavorite = this.notes.filter(note => {
-                return note.isFavorite === isFavorite
-            })
-            view.renderNotes(arrForFavorite)
+            view.renderNotes(this.arrNotesForFavorite())
         } else {
             view.renderNotes(this.notes)
         }
-    }
+    },
 }
 
 // отображение данных: рендер списка задач, размещение обработчиков событий
@@ -66,6 +84,10 @@ const view = {
                     controller.addNote(textTitle, textDescription, color)
                     form.textTitle.value = ''
                     form.textDescription.value = ''
+                    //анимация при добавлении заметки
+                    const frameNotes = document.querySelectorAll('.frame-notes')
+                    frameNotes[0].classList.add('show-notes')
+                    setTimeout(() => frameNotes[0].classList.remove('show-notes'), 0)
                     //Логика для всплывающего окна “Заметка добавлена”. Сообщение скрывается через 3 секунды
                     const messageAddNote = document.querySelector('.message-add-note')
                     messageAddNote.classList.add('show')
@@ -91,7 +113,7 @@ const view = {
                 controller.deleteNote(noteId)
             }
         })
-        //добавить удалить в избранное
+        //событие добавить удалить в избранное
         notesContainer.addEventListener('click', function (event) {
             if (event.target.classList.contains('img-favorite')) {
                 const noteId = +event.target.parentElement.id
@@ -104,7 +126,6 @@ const view = {
             if (event.target.tagName === 'INPUT') {
                 const checkbox = document.querySelector('.checkbox-for-favorite')
                 let isFavorite = checkbox.checked
-                console.log(isFavorite);
                 controller.viewOnlyFavorites(isFavorite)
             }
         })
@@ -113,9 +134,13 @@ const view = {
     renderNotes(notes) {
         const notesContainer = document.querySelector('.notes-container')
         const showFavorites = document.querySelector('.show-Favorites')
-        
+
         if (model.notes.length >= 1) {
             showFavorites.style = "display: flex"
+            //получение статуса флажка показать избранное
+            const checkbox = document.querySelector('.checkbox-for-favorite')
+            let isFavorite = checkbox.checked
+            model.getStatusIsFavorite(isFavorite)
         } else {
             showFavorites.style = "display: none"
         }
@@ -142,6 +167,8 @@ const view = {
                 </div>
                 `
             })
+
+
         }
         // счетчик заметок
         const counter = document.querySelector('.counter-number')
