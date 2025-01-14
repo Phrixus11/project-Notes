@@ -66,11 +66,22 @@ const view = {
     init() {
         this.renderNotes(model.notes)
         const form = document.querySelector('.form')
+        
 
         //счетчик ввода символов
         form.textTitle.addEventListener('input', function () {
             const str = form.textTitle.value.trim()
-            form.output.textContent = 0 + str.length
+            form.output.textContent = `${0 + str.length} / 50`
+            if (str.length > 50) {
+                const messageWarning = document.querySelector('.message-warning')
+                messageWarning.classList.add('show')
+                setTimeout(() => messageWarning.classList.remove('show'), 1000)
+                form.textTitle.classList.add('focusMaxTextLength')
+                form.output.style.color = 'red'
+            } else {
+                form.textTitle.classList.remove('focusMaxTextLength')
+                form.output.style.color = ''
+            }
         })
 
         //событие для добавления заметки
@@ -152,7 +163,7 @@ const view = {
         } else {
             notesContainer.innerHTML = ''
             const form = document.querySelector('.form')
-            form.output.textContent = 0
+            form.output.textContent = `0 / 50`
             notes.forEach(note => {
                 notesContainer.innerHTML += `
                 <div>

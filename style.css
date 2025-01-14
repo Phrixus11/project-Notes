@@ -61,7 +61,7 @@ label {
     color: #919191;
 }
 
-input[type="text"],
+.text-title,
 textarea {
     border: 1px solid #e8e8e8;
     border-radius: 10px;
@@ -71,8 +71,18 @@ textarea {
     resize: none;
 }
 
-input[type="text"] {
+.text-title {
     margin-bottom: 12px;
+}
+
+.focusMaxTextLength {
+    border-color: red;
+}
+
+.focusMaxTextLength:focus {
+    outline: none;
+    border-color: red;
+    border-width: 2px;
 }
 
 .submit-container {
@@ -322,8 +332,8 @@ p {
         transition: 0.1s;
     }
 
-    input[type="text"] {
-        width: 310px;
+    .text-title {
+        width: 300px;
     }
 
     .message-warning {
