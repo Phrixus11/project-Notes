@@ -61,8 +61,8 @@ const view = {
             const textTitle = form.textTitle.value
             const textDescription = form.textDescription.value
             const color = form.color.value
-            if (textTitle.trim() !== '' && textDescription.trim() !== '') {
-                if (textTitle.trim().length <= 50) {
+            if (textTitle.trim().length <= 50) {
+                if (textTitle.trim() !== '' && textDescription.trim() !== '') {
                     controller.addNote(textTitle, textDescription, color)
                     form.textTitle.value = ''
                     form.textDescription.value = ''
@@ -71,20 +71,19 @@ const view = {
                     messageAddNote.classList.add('show')
                     setTimeout(() => messageAddNote.classList.remove('show'), 3000)
                 } else {
-                    //Логика для всплывающего окна “Максимум 50 символов”. Сообщение скрывается через 3 секунды
-                    const messageWarning = document.querySelector('.message-warning')
-                    messageWarning.classList.add('show')
-                    setTimeout(() => messageWarning.classList.remove('show'), 3000)
+                    //Логика для всплывающего окна “Заполните все поля”. Сообщение скрывается через 3 секунды
+                    const messageEmptyInput = document.querySelector('.message-empty-input')
+                    messageEmptyInput.classList.add('show')
+                    setTimeout(() => messageEmptyInput.classList.remove('show'), 3000)
                 }
             } else {
-                //Логика для всплывающего окна “Заполните все поля”. Сообщение скрывается через 3 секунды
-                const messageEmptyInput = document.querySelector('.message-empty-input')
-                messageEmptyInput.classList.add('show')
-                setTimeout(() => messageEmptyInput.classList.remove('show'), 3000)
+                //Логика для всплывающего окна “Максимум 50 символов”. Сообщение скрывается через 3 секунды
+                const messageWarning = document.querySelector('.message-warning')
+                messageWarning.classList.add('show')
+                setTimeout(() => messageWarning.classList.remove('show'), 3000)
             }
         })
         //событие для удаления заметки
-        const deleteButton = document.querySelector('.img-delete-notes')
         const notesContainer = document.querySelector('.notes-container')
         notesContainer.addEventListener('click', function (event) {
             if (event.target.classList.contains('img-delete-notes')) {
@@ -104,8 +103,6 @@ const view = {
         checkboxForFavorite.addEventListener('click', function (event) {
             if (event.target.tagName === 'INPUT') {
                 const checkbox = document.querySelector('.checkbox-for-favorite')
-                // console.log(event.target);
-
                 let isFavorite = checkbox.checked
                 console.log(isFavorite);
                 controller.viewOnlyFavorites(isFavorite)
@@ -116,21 +113,21 @@ const view = {
     renderNotes(notes) {
         const notesContainer = document.querySelector('.notes-container')
         const showFavorites = document.querySelector('.show-Favorites')
+        
         if (model.notes.length >= 1) {
             showFavorites.style = "display: flex"
         } else {
             showFavorites.style = "display: none"
         }
+
         if (model.notes[0] === undefined) {
             notesContainer.innerHTML = `
             <p class="message">У вас нет еще ни одной заметки<br> 
             Заполните поля выше и создайте свою первую заметку!</p>`
         } else {
-
             notesContainer.innerHTML = ''
             const form = document.querySelector('.form')
             form.output.textContent = 0
-
             notes.forEach(note => {
                 notesContainer.innerHTML += `
                 <div>
@@ -143,7 +140,7 @@ const view = {
                         <p>${note.text}</p>
                     </div>
                 </div>
-            `
+                `
             })
         }
         // счетчик заметок

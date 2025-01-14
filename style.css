@@ -9,6 +9,7 @@ body {
     min-width: 430px;
 }
 
+/* Стили хедера */
 header {
     height: 60px;
     padding: 0px 64px;
@@ -35,13 +36,13 @@ header {
     font-weight: 700;
 }
 
+
 .main-section {
     min-height: calc(100vh - 63px);
     background-color: #FAFAFC;
     padding: 21px 64px;
     margin-top: 3px;
 }
-
 
 /* Стили формы */
 .form-wrapper {
@@ -275,19 +276,16 @@ p {
 
 .message-add-note {
     width: 230px;
-    height: 48px;
     background: #47b27d;
 }
 
 .message-warning {
     width: 427px;
-    height: 48px;
     background: #f23d5b
 }
 
 .message-empty-input {
     width: 230px;
-    height: 48px;
     background: #f23d5b
 }
 
@@ -322,7 +320,6 @@ p {
 
     .message-warning {
         width: 314px;
-        height: 76px;
         text-align: center;
     }
 
