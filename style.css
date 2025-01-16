@@ -44,6 +44,12 @@ header {
     margin-top: 3px;
 }
 
+.main-section>div {
+    max-width: 1152px;
+    margin: auto;
+}
+
+
 /* Стили формы */
 .form-wrapper {
     min-height: 228px;

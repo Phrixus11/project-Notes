@@ -24,71 +24,74 @@
     </header>
 
     <section class="main-section">
-        <div class="form-wrapper">
-            <form class="form" action="">
-                <div>
-                    <label>Название заметки<br>
-                        <input class="text-title" name="textTitle" type="text"
-                            placeholder="Напишите название новой заметки...">
-                        <output class="output" name="output">0 / 50</output>
-                    </label>
-                </div>
-
-                <div class="submit-container">
-                    <label>Описание новой заметки<br>
-                        <textarea class='text-description' name="textDescription" id=""
-                            placeholder="Напишите описание новой заметки..."></textarea>
-                    </label>
+        <div>
+            <div class="form-wrapper">
+                <form class="form" action="">
                     <div>
-
-                        <label>Выберите цвет заметки</label>
-                        <div class="color-list">
-                            <input type="radio" id="color-1" name="color" value="f3db7d" checked>
-                            <label for="color-1">
-                                <div class="circle yellow"></div>
-                            </label>
-
-                            <input type="radio" id="color-2" name="color" value="c2f37d">
-                            <label for="color-2">
-                                <div class="circle green"></div>
-                            </label>
-
-                            <input type="radio" id="color-3" name="color" value="7de1f3">
-                            <label for="color-3">
-                                <div class="circle blue"></div>
-                            </label>
-
-                            <input type="radio" id="color-4" name="color" value="f37d7d">
-                            <label for="color-4">
-                                <div class="circle red"></div>
-                            </label>
-
-                            <input type="radio" id="color-5" name="color" value="e77df3">
-                            <label for="color-5">
-                                <div class="circle purple"></div>
-                            </label>
-                        </div>
-                        
-                        <button class="submit-button"><img src="./assets/images/plus-svgrepo-com.svg"
-                                alt="active-button"> Добавить заметку</button>
+                        <label>Название заметки<br>
+                            <input class="text-title" name="textTitle" type="text"
+                                placeholder="Напишите название новой заметки...">
+                            <output class="output" name="output">0 / 50</output>
+                        </label>
                     </div>
-                </div>
-            </form>
-        </div>
-
-        <div class="show-Favorites">
-            <input class="checkbox-for-favorite" id="check-favorite" type="checkbox">
-            <label for="check-favorite">Показать избранные заметки</label>
-        </div>
-
-        <div class="notes-container">
-
-        </div>
+    
+                    <div class="submit-container">
+                        <label>Описание новой заметки<br>
+                            <textarea class='text-description' name="textDescription" id=""
+                                placeholder="Напишите описание новой заметки..."></textarea>
+                        </label>
+                        <div>
+    
+                            <label>Выберите цвет заметки</label>
+                            <div class="color-list">
+                                <input type="radio" id="color-1" name="color" value="f3db7d" checked>
+                                <label for="color-1">
+                                    <div class="circle yellow"></div>
+                                </label>
+    
+                                <input type="radio" id="color-2" name="color" value="c2f37d">
+                                <label for="color-2">
+                                    <div class="circle green"></div>
+                                </label>
+    
+                                <input type="radio" id="color-3" name="color" value="7de1f3">
+                                <label for="color-3">
+                                    <div class="circle blue"></div>
+                                </label>
+    
+                                <input type="radio" id="color-4" name="color" value="f37d7d">
+                                <label for="color-4">
+                                    <div class="circle red"></div>
+                                </label>
+    
+                                <input type="radio" id="color-5" name="color" value="e77df3">
+                                <label for="color-5">
+                                    <div class="circle purple"></div>
+                                </label>
+                            </div>
+                            
+                            <button class="submit-button"><img src="./assets/images/plus-svgrepo-com.svg"
+                                    alt="active-button"> Добавить заметку</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    
+            <div class="show-Favorites">
+                <input class="checkbox-for-favorite" id="check-favorite" type="checkbox">
+                <label for="check-favorite">Показать избранные заметки</label>
+            </div>
+    
+            <div class="notes-container">
+    
+            </div>
+            
+            <p class="message-add-note"><img src="./assets/images/Done.svg" alt="active-button">Заметка добавлена!</p>
+            <p class="message-warning"><img src="./assets/images/warning.svg" alt="active-button">Максимальная длина
+                заголовка - 50 символов</p>
+            <p class="message-empty-input"><img src="./assets/images/warning.svg" alt="active-button">Заполните все поля</p>
         
-        <p class="message-add-note"><img src="./assets/images/Done.svg" alt="active-button">Заметка добавлена!</p>
-        <p class="message-warning"><img src="./assets/images/warning.svg" alt="active-button">Максимальная длина
-            заголовка - 50 символов</p>
-        <p class="message-empty-input"><img src="./assets/images/warning.svg" alt="active-button">Заполните все поля</p>
+        </div>
     </section>
 
     <script src="main.js"></script>
