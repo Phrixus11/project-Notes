@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.9">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+        rel="stylesheet"> -->
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>NotesPad</title>
 </head>
 
 <body>
@@ -34,63 +34,65 @@
                             <output class="output" name="output">0 / 50</output>
                         </label>
                     </div>
-    
+
                     <div class="submit-container">
                         <label>Описание новой заметки<br>
-                            <textarea class='text-description' name="textDescription" id=""
+                            <textarea class='text-description' name="textDescription"
                                 placeholder="Напишите описание новой заметки..."></textarea>
                         </label>
                         <div>
-    
+
                             <label>Выберите цвет заметки</label>
                             <div class="color-list">
                                 <input type="radio" id="color-1" name="color" value="f3db7d" checked>
                                 <label for="color-1">
                                     <div class="circle yellow"></div>
                                 </label>
-    
+
                                 <input type="radio" id="color-2" name="color" value="c2f37d">
                                 <label for="color-2">
                                     <div class="circle green"></div>
                                 </label>
-    
+
                                 <input type="radio" id="color-3" name="color" value="7de1f3">
                                 <label for="color-3">
                                     <div class="circle blue"></div>
                                 </label>
-    
+
                                 <input type="radio" id="color-4" name="color" value="f37d7d">
                                 <label for="color-4">
                                     <div class="circle red"></div>
                                 </label>
-    
+
                                 <input type="radio" id="color-5" name="color" value="e77df3">
                                 <label for="color-5">
                                     <div class="circle purple"></div>
                                 </label>
                             </div>
-                            
-                            <button class="submit-button"><img src="./assets/images/plus-svgrepo-com.svg"
-                                    alt="active-button"> Добавить заметку</button>
+
+                            <button class="submit-button"><img src="./assets/images/plus-svgrepo-com.svg" alt="active-button"> Добавить заметку</button>
                         </div>
                     </div>
                 </form>
             </div>
-    
+
             <div class="show-Favorites">
                 <input class="checkbox-for-favorite" id="check-favorite" type="checkbox">
                 <label for="check-favorite">Показать избранные заметки</label>
             </div>
-    
-            <div class="notes-container">
-    
+
+                <div class="notes-container">
+
+                </div>
+
+
+            <div class="message-box">
+                <p class="message-add-note"><img src="./assets/images/Done.svg" alt="active-button">Заметка добавлена!</p>
+                <p class="message-warning"><img src="./assets/images/warning.svg" alt="active-button">Максимальная длина заголовка - 50 символов</p>
+                <p class="message-warning-description"><img src="./assets/images/warning.svg" alt="active-button">Максимальная длина описания заметки - 200 символов</p>
+                <p class="message-empty-input"><img src="./assets/images/warning.svg" alt="active-button">Заполните все поля</p>
             </div>
-            
-            <p class="message-add-note"><img src="./assets/images/Done.svg" alt="active-button">Заметка добавлена!</p>
-            <p class="message-warning"><img src="./assets/images/warning.svg" alt="active-button">Максимальная длина
-                заголовка - 50 символов</p>
-            <p class="message-empty-input"><img src="./assets/images/warning.svg" alt="active-button">Заполните все поля</p>
-        
+
         </div>
     </section>
 

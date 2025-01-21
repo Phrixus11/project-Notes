@@ -1,3 +1,30 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url(./assets/fonts/Montserrat-Regular.eot?) format('eot'),
+        url(./assets/fonts/Montserrat-Regular.woff2) format('woff2'),
+        url(./assets/fonts/Montserrat-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url(./assets/fonts/Montserrat-Bold.eot?) format('eot'),
+        url(./assets/fonts/Montserrat-Bold.woff2) format('woff2'),
+        url(./assets/fonts/Montserrat-Bold.ttf) format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url(./assets/fonts/Montserrat-Medium.eot?) format('eot'),
+        url(./assets/fonts/Montserrat-Medium.woff2) format('woff2'),
+        url(./assets/fonts/Montserrat-Medium.ttf) format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -37,6 +64,7 @@ header {
 }
 
 
+/* main */
 .main-section {
     min-height: calc(100vh - 63px);
     background-color: #FAFAFC;
@@ -205,15 +233,16 @@ input[type="checkbox"] {
 
 /* Заметки */
 .notes-container {
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(auto-fit, minmax(368px, 1fr));
     gap: 24px;
-    justify-items: center;
-    /* display: flex;
+    justify-items: center; */
+    display: flex;
     gap: 24px;
     justify-items: center;
     align-items: flex-start;
-    flex-flow: wrap; */
+    flex-flow: wrap;
+    margin: auto;
 }
 
 .frame-notes {
@@ -268,12 +297,14 @@ p {
     line-height: 1.5;
     text-align: center;
     color: #000;
+    margin: auto;
     margin-top: 78px;
 }
 
 .message-add-note,
 .message-warning,
-.message-empty-input {
+.message-empty-input,
+.message-warning-description {
     font-weight: 500;
     font-size: 14px;
     line-height: 1.71429;
@@ -289,7 +320,7 @@ p {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.4s ease, transform 0.4s ease;
-    
+    z-index: 100;
 }
 
 .show {
@@ -303,15 +334,30 @@ p {
     background: #47b27d;
 }
 
-.message-warning {
+.message-warning,
+.message-warning-description {
     width: 427px;
-    background: #f23d5b
+    background: #f23d5b;
+    text-align: center;
 }
 
 .message-empty-input {
     width: 230px;
     background: #f23d5b
 }
+
+@media (max-width: 1280px) {
+    .notes-container {
+        max-width: 760px;
+    }
+}
+
+@media (max-width: 890px) {
+    .notes-container {
+        max-width: 368px;
+    }
+}
+
 
 @media (max-width: 780px) {
     .submit-container {
@@ -342,7 +388,8 @@ p {
         width: 290px;
     }
 
-    .message-warning {
+    .message-warning,
+    .message-warning-description {
         width: 314px;
         text-align: center;
     }

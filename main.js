@@ -64,9 +64,12 @@ const model = {
 // отображение данных: рендер списка задач, размещение обработчиков событий
 const view = {
     init() {
+        //получение данных из Local Storage
+        model.notes = JSON.parse(localStorage.getItem('modelData'))
+
         this.renderNotes(model.notes)
         const form = document.querySelector('.form')
-        
+
 
         //счетчик ввода символов
         form.textTitle.addEventListener('input', function () {
@@ -84,13 +87,25 @@ const view = {
             }
         })
 
+        form.textDescription.addEventListener('input', function () {
+            const str = form.textDescription.value.trim()
+            if (str.length > 200) {
+                const messageWarningDescrition = document.querySelector('.message-warning-description')
+                messageWarningDescrition.classList.add('show')
+                setTimeout(() => messageWarningDescrition.classList.remove('show'), 1000)
+                form.textDescription.classList.add('focusMaxTextLength')
+            } else {
+                form.textDescription.classList.remove('focusMaxTextLength')
+            }
+        })
+
         //событие для добавления заметки
         form.addEventListener('submit', function (event) {
             event.preventDefault() // Предотвращаем стандартное поведение формы
             const textTitle = form.textTitle.value
             const textDescription = form.textDescription.value
             const color = form.color.value
-            if (textTitle.trim().length <= 50) {
+            if (textTitle.trim().length <= 50 && textDescription.trim().length <= 200) {
                 if (textTitle.trim() !== '' && textDescription.trim() !== '') {
                     controller.addNote(textTitle, textDescription, color)
                     form.textTitle.value = ''
@@ -109,11 +124,16 @@ const view = {
                     messageEmptyInput.classList.add('show')
                     setTimeout(() => messageEmptyInput.classList.remove('show'), 3000)
                 }
-            } else {
+            } else if (textTitle.trim().length > 50) {
                 //Логика для всплывающего окна “Максимум 50 символов”. Сообщение скрывается через 3 секунды
                 const messageWarning = document.querySelector('.message-warning')
                 messageWarning.classList.add('show')
                 setTimeout(() => messageWarning.classList.remove('show'), 3000)
+            } else if (textDescription.trim().length > 200) {
+                //Логика для всплывающего окна “Максимум 200 символов”. Сообщение скрывается через 3 секунды
+                const messageWarningDescrition = document.querySelector('.message-warning-description')
+                messageWarningDescrition.classList.add('show')
+                setTimeout(() => messageWarningDescrition.classList.remove('show'), 3000)
             }
         })
         //событие для удаления заметки
@@ -160,6 +180,9 @@ const view = {
             notesContainer.innerHTML = `
             <p class="message">У вас нет еще ни одной заметки<br> 
             Заполните поля выше и создайте свою первую заметку!</p>`
+        } else if (model.statusIsFavorite && model.arrNotesForFavorite()[0] === undefined) {
+            notesContainer.innerHTML = `
+            <p class="message">У вас нет избранных заметок</p>`
         } else {
             notesContainer.innerHTML = ''
             const form = document.querySelector('.form')
@@ -184,6 +207,8 @@ const view = {
         // счетчик заметок
         const counter = document.querySelector('.counter-number')
         counter.textContent = model.notes.length
+        //Запись данных в Local Storage
+        localStorage.setItem('modelData', JSON.stringify(model.notes))
     },
 }
 
