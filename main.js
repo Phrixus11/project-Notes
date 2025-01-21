@@ -65,9 +65,13 @@ const model = {
 const view = {
     init() {
         //получение данных из Local Storage
-        model.notes = JSON.parse(localStorage.getItem('modelData'))
-
+        if (JSON.parse(localStorage.getItem('modelData')) !== null) {
+            model.notes = JSON.parse(localStorage.getItem('modelData'))
+        }
+        
         this.renderNotes(model.notes)
+
+
         const form = document.querySelector('.form')
 
 
