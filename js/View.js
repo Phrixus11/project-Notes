@@ -1,68 +1,8 @@
-const MOCK_NOTES = [
-    { id: 1, title: 'Изучить паттерн MVC', text: 'Изучить паттерн MVC', color: 'blue', isFavorite: true },
-    { id: 2, title: 'Изучить паттерн MVC', text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora sequi laboriosam dignissimosLorem ipsum dolor sit amet consectetur adipisicing elit. Tempora sequi laboriosam dignissimosLorem ipsum dolor sit amet consectetur adipisicing elit. Tempora sequi laboriosam dignissimosLorem ipsum dolor sit amet consectetur adipisicing elit. Tempora sequi laboriosam dignissimos', color: 'blue', isFavorite: false },
-
-]
-
-// хранение данных, бизнес-логика
-const model = {
-    notes: [],
-    statusIsFavorite: false,
-    // статус флажка isFavorite
-    getStatusIsFavorite(isFavorite) {
-        this.statusIsFavorite = isFavorite
-    },
-    // создание массива избранных 
-    arrNotesForFavorite() {
-        return this.notes.filter(note => note.isFavorite === true)
-    },
-
-    addNote(textTitle, textDescription, color) {
-        let newNote = {
-            id: new Date().getTime(),
-            title: textTitle,
-            text: textDescription,
-            color: color,
-            isFavorite: false
-        }
-        this.notes.unshift(newNote)
-        if (this.statusIsFavorite) {
-            view.renderNotes(this.arrNotesForFavorite())
-        } else {
-            view.renderNotes(this.notes)
-        }
-    },
-    deleteNote(noteId) {
-        this.notes = this.notes.filter(note => noteId !== note.id)
-        if (this.statusIsFavorite) {
-            view.renderNotes(this.arrNotesForFavorite())
-        } else {
-            view.renderNotes(this.notes)
-        }
-    },
-    addFavotire(noteId) {
-        this.notes.forEach(note => {
-            if (noteId === note.id) {
-                note.isFavorite = !note.isFavorite
-            }
-            if (this.statusIsFavorite) {
-                view.renderNotes(this.arrNotesForFavorite())
-            } else {
-                view.renderNotes(this.notes)
-            }
-        })
-    },
-    viewOnlyFavorites(isFavorite) {
-        if (isFavorite) {
-            view.renderNotes(this.arrNotesForFavorite())
-        } else {
-            view.renderNotes(this.notes)
-        }
-    },
-}
+import {controller} from "./Controller.js"
+import {model} from "./Model.js"
 
 // отображение данных: рендер списка задач, размещение обработчиков событий
-const view = {
+export const view = {
     init() {
         //получение данных из Local Storage
         if (JSON.parse(localStorage.getItem('modelData')) !== null) {
@@ -70,10 +10,7 @@ const view = {
         }
         
         this.renderNotes(model.notes)
-
-
         const form = document.querySelector('.form')
-
 
         //счетчик ввода символов
         form.textTitle.addEventListener('input', function () {
@@ -205,8 +142,6 @@ const view = {
                 </div>
                 `
             })
-
-
         }
         // счетчик заметок
         const counter = document.querySelector('.counter-number')
@@ -215,28 +150,3 @@ const view = {
         localStorage.setItem('modelData', JSON.stringify(model.notes))
     },
 }
-
-// обработка действий пользователя, обновление модели
-const controller = {
-    addNote(textTitle, textDescription, color) {
-        model.addNote(textTitle, textDescription, color)
-    },
-    deleteNote(noteId) {
-        model.deleteNote(noteId)
-    },
-    addFavotire(noteId) {
-        model.addFavotire(noteId)
-    },
-    viewOnlyFavorites(isFavorite) {
-        model.viewOnlyFavorites(isFavorite)
-    }
-}
-
-// Функция инициализации
-function init() {
-    view.init()
-    // здесь может быть код инициализации других модулей
-}
-
-// Вызов функции инициализации при загрузке страницы
-init()
